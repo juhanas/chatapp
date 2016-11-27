@@ -1,13 +1,9 @@
-import App from './app';
-import routes from './routes';
-import Layout from './layout';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
 
-export const reducers = {
-  title: state => state
-};
-
-export const initialState = {
-  title: 'The Chat'
-};
-
-App({ reducers, initialState, Layout, routes }).render();
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

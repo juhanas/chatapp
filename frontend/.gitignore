@@ -1,31 +1,15 @@
-# Logs
-logs
-*.log
-npm-debug.log*
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Runtime data
-pids
-*.pid
-*.seed
+# dependencies
+node_modules
 
-# Coverage
-lib-cov
-.coverage
-.nyc_output
+# testing
+coverage
 
-# node-waf configuration
-.lock-wscript
-
-# build directory
+# production
 build
 
-# Dependency directories
-node_modules
-jspm_packages
-bower_components
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
+# misc
+.DS_Store
+.env
+npm-debug.log
