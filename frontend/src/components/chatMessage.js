@@ -9,13 +9,21 @@ class ChatMessage extends Component{
    * - message [String]: Message to display
    */
   render() {
-    return (
-      <div className="chat-message-container">
-        <span className="chat-message-user">{this.props.user}</span>
-        <span className="chat-message-divider">: </span>
-        <span className="chat-message-message">{this.props.message}</span>
-      </div>
-    );
+    if( this.props.user != '') {
+      return (
+        <div className="chat-message-container">
+          <span className="chat-message-user">{this.props.user}</span>
+          <span className="chat-message-divider">: </span>
+          <span className="chat-message-message">{this.props.message}</span>
+        </div>
+      );
+    } else {
+      return (
+        <div className="chat-message-container">
+          <span className="chat-message-message">{this.props.message}</span>
+        </div>
+      );
+    }
   }
 }
 

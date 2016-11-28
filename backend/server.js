@@ -1,9 +1,12 @@
-var app = require('express')();
+var express = require('express'),
+    app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var chatLog = [];
 var chatLogSize = 20;
+
+app.use("/static", express.static(__dirname + '/static'));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -12,10 +15,13 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.broadcast.emit('server message', { message: 'A new user entered the chat.'});
+  console.log('Broadcast');
   socket.emit('server message', { message: 'Welcome to The Chat!'});
+  console.log('welcome message');
   for (var i = 0; i < chatLog.length; i++) {
       socket.emit('chat message', chatLog[i]);
   }
+  console.log('log sent.');
   
   socket.on('disconnect', function(){
     console.log('user disconnected');

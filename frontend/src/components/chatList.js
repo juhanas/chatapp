@@ -15,8 +15,10 @@ class ChatList extends Component{
         <div className="chat-list">
         {
           this.props.messages.map((message, i) => {
+            var username = '';
+            if (message.hasOwnProperty('user')) username = message.user;
             return (
-              <ChatMessage key={i.toString()} user={message.user} message={message.message}/>
+              <ChatMessage key={i.toString()} user={username} message={message.message}/>
             );
           })
         }
