@@ -9,7 +9,7 @@ class ChatMessage extends Component{
    * - message [String]: Message to display
    */
   render() {
-    if( this.props.user != '') {
+    if( this.props.user !== '') {
       return (
         <div className="chat-message-container">
           <span className="chat-message-user">{this.props.user}</span>

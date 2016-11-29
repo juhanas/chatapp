@@ -8,7 +8,7 @@ class ChatInput extends Component{
   }
   
   /*
-   * Modifiees state.text based on event.target.value.
+   * Modifies state.text based on event.target.value.
    * @param event: The triggering event
    */
   messageHandler(event)  {
