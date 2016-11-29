@@ -10,11 +10,12 @@ class UserList extends Component{
   render() {
     return (
       <div className="user-list-container">
+        <h3>Users</h3>
         <div className="user-list">
         {
           this.props.users.map((user, i) => {
             return (
-              <UserData key={i.toString()} name={user.name}/>
+              <UserData key={i.toString()} name={user}/>
             );
           })
         }

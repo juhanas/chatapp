@@ -34,7 +34,7 @@ class ChangeNameModal extends Component {
   save = (event) => {
     event.preventDefault();
     var data = {
-      oldName: this.props.user,
+      oldName: this.props.username,
       newName: this.state.text
     }
     this.props.onSave(data);

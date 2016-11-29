@@ -36,11 +36,50 @@ class Chat extends Component{
      *   {oldName: oldUserName, newName: newUserName}
      */
     socket.on('user namechange', function(data){
+      console.log("User namechange.");
       var messages = self.state.messages;
-      messages.push('Username ' + data.oldName + ' changed to: ' + data.newName);
+      messages.push({message: 'Username ' + data.oldName + ' changed to: ' + data.newName});
       self.setState(messages);
+      
+      var users = self.state.users;
+      var i = users.indexOf(data.oldName);
+      users.splice(i, 1);
+      users.push(data.newName);
+      self.setState(users);
     });
 
+    /**
+     * Adds a new user to the chat.
+     * Modifies state.messages and state.users.
+     * @param data: JSON containing the username
+     */
+    socket.on('user enter', function(data){
+      console.log("User enter");
+      var messages = self.state.messages;
+      messages.push({message: data.username + ' has entered the chat'});
+      self.setState(messages);
+      
+      var users = self.state.users;
+      users.push(data.username);
+      self.setState(users);
+    });
+    
+    /**
+     * Removes a user from chat.
+     * Modifies state.messages and state.users.
+     * @param data: JSON containing the username
+     */
+    socket.on('user exit', function(data){
+      var messages = self.state.messages;
+      messages.push({message: data.username + ' has left the chat'});
+      self.setState(messages);
+      
+      var users = self.state.users;
+      var i = users.indexOf(data.username);
+      users.splice(i, 1);
+      self.setState(users);
+    });
+    
     /**
      * Adds a new received message to the chat.
      * Modifies state.messages.
@@ -61,26 +100,38 @@ class Chat extends Component{
       var messages = self.state.messages;
       messages.push(msg);
       self.setState(messages);
+      
+      if( msg.type === 'welcome') {
+        console.log("Welcome. Message:" + JSON.stringify(msg));
+        console.log("Users length: " + msg.users.length);
+        var users = self.state.users;
+        for (var i = 0; i < msg.users.length; i++) {
+          users.push(msg.users[i]);
+        }
+        self.setState(users);
+      }
     });
   }
   
   /**
    * Handles sending a new username to the server.
    * Sets the state for this.state.username.
+   * Emits 'user name' with the data.
    * @param data JSON containing the data: {oldName: oldUsername, newName: newUserName}
    */
   handleNameChange = (data) => {
     this.setState({username: data.newName});
-    if( this.state.start) {
-      socket.emit('user start', {username: data.newName});
+    if( this.state.start)
       this.setState({start: false});
-    } else socket.emit('user name', data);
+    socket.emit('user name', data);
+    console.log("Emit user name");
   }
 
   /**
    * Handles sending a new message by pushing it to the screen and
    * sending it to the service through the socket.
    * Sets the state for this.state.messages.
+   * Emits 'chat message' with the message.
    * @param message JSON containing the message: {user: username, message: message}
    */
   handleMessageSend = (message) => {
