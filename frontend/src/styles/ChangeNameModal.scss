@@ -1,0 +1,34 @@
+.change-name-modal-container {
+  position: fixed;
+  bottom: 0px;
+  margin-bottom: 5px;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.8);
+  z-index: 10;
+}
+
+.modal-class {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  z-index: 2;
+  border: black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: gray;
+}
+
+.change-name-modal-content {
+  
+}
+
+.modal-error-message {
+  color: purple;
+}

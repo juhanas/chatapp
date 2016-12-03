@@ -4,6 +4,7 @@ import ChatInput from './chatInput';
 import UserList from './userList';
 import ChangeNameModal from './changeNameModal';
 import ioClient from 'socket.io-client';
+import '../styles/Chat.scss';
 
 var socket;
  
@@ -11,8 +12,8 @@ class Chat extends Component{
   constructor(props) {
     super(props);
     this.state = { messages: [],
-      users: [],
-      username: 'User1',
+      users: ['a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','b','a','a','a','a','a','a','b','a','a','a','a','a','a','b'],
+      username: '',
       start: true
     };
   }
@@ -146,14 +147,13 @@ class Chat extends Component{
    */
   render() {
     return (
-      <div className="chat-container">
-        <div className="chat-header">
-          <h3>Your name: {this.state.username}</h3>
+      <div className="chat-container row">
+        <ChatList messages={this.state.messages} cls="col-sm-10"/>
+        <ChatInput user={this.state.username} onMessageSend={this.handleMessageSend} cls="col-sm-10"/>
+        <div className="info-container col-sm-2 navbar-right">
+          <UserList users={this.state.users} cls=""/>
+          <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange} cls=""/>
         </div>
-        <ChatList messages={this.state.messages}/>
-        <ChatInput user={this.state.username} onMessageSend={this.handleMessageSend}/>
-        <UserList users={this.state.users}/>
-        <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange}/>
       </div>
     );
   }

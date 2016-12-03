@@ -1,11 +1,15 @@
 import React,{Component} from 'react';
 import Modal from 'react-modal';
+import { Button } from 'react-bootstrap';
+import '../styles/ChangeNameModal.scss';
 
 class ChangeNameModal extends Component {
   constructor () {
     super();
     this.state = { open: true,
-      text: ''
+      text: '',
+      starting: true,
+      error: ''
     };
 
     this.openModal = this.openModal.bind(this);
@@ -21,6 +25,7 @@ class ChangeNameModal extends Component {
    */
   messageHandler(event)  {
     this.setState({text: event.target.value})
+    this.setState({error: ''});
   }
 
   /*
@@ -38,29 +43,43 @@ class ChangeNameModal extends Component {
       newName: this.state.text
     }
     this.props.onSave(data);
-    this.setState({text: ""})
+    if( this.state.starting) {
+      this.setState({starting: false})
+      this.setState({open: false});
+    }
+    this.setState({text: ''})
+    this.setState({error: ''});
   }
 
   openModal() { this.setState({open: true}); }
 
-  closeModal() { this.setState({open: false}); }
+  closeModal() { 
+    if (!this.state.starting) {
+      this.setState({open: false});
+    } else this.setState({error: 'Please choose a name'});
+  }
 
   render() {
+    const starting = this.state.starting;
     return (
-      <div className="changeNameModal">
-        <button onClick={this.openModal}>Change Name</button>
-        <Modal
-          className="ModalClass"
-          overlayClassName="OverlayClass"
-          isOpen={this.state.open}
-          onRequestClose={this.closeModal}
-        >
-          <h2>Change name</h2>
-          <h3>Please enter your new username</h3>
-          <input type="text" value={this.state.text} placeholder={this.props.username} onChange={this.messageHandler} />
-          <button onClick={this.save}>Save</button>
-          <button hidden={this.props.start && 'hidden'} onClick={this.closeModal}>Close</button>
-        </Modal>
+      <div className="change-name-modal-container row">
+        <div className={this.props.cls}>
+          <Button onClick={this.openModal}>Change name</Button>
+          <Modal
+            className="modal-class"
+            overlayClassName="modal-container"
+            isOpen={this.state.open}
+            onRequestClose={this.closeModal}
+          >
+            <div className="change-name-modal-content">
+              <h2>{starting ? 'Enter' : 'Change'} name</h2>
+              <input type="text" value={this.state.text} placeholder={this.props.username} onChange={this.messageHandler} />
+              <Button onClick={this.save} bsStyle="primary">Save</Button>
+              <Button hidden={this.props.start && 'hidden'} onClick={this.closeModal}>Close</Button>
+              <p className="modal-error-message">{this.state.error}</p>
+            </div>
+          </Modal>
+        </div>
       </div>
     );
   }

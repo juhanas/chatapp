@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import { Button } from 'react-bootstrap';
+import '../styles/ChatInput.scss';
 
 class ChatInput extends Component{
   constructor(props) {
@@ -38,12 +40,17 @@ class ChatInput extends Component{
    * Calls this.messageHandler and this.sendMessage with change in input or for submit.
    */
   render() {
+    var clas = "chat-input-container " + this.props.cls;
     return (
-      <div className="chat-input-container">
-        <span className="chat-input-header">Type your message:</span>
+      <div className={clas}>
         <form  onSubmit={this.sendMessage}>
-          <input type="text" value={this.state.text} placeholder="type here" onChange={this.messageHandler} />
-          <input type="submit" value="Send"/>
+          <div className="input-group">
+            <label className="sr-only" htmlFor="msg">Message:</label>
+            <input type="text" value={this.state.text} placeholder="type here" onChange={this.messageHandler} className="form-control in" id="msg"/>
+            <span className="input-group-btn">
+              <Button type="submit" bsStyle="primary">Send</Button>
+            </span>
+          </div>
         </form>
       </div>
     );

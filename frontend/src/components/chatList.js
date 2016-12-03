@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import ChatMessage from './chatMessage';
+import '../styles/ChatList.scss';
 
 class ChatList extends Component{
   
@@ -9,9 +10,9 @@ class ChatList extends Component{
    * - messages [String]: List of messages in JSON {user: username, message: message}
    */
   render() {
+    var clas = "chat-list-container " + this.props.cls;
     return (
-      <div className="chat-list-container">
-        <h2>Messages</h2>
+      <div className={clas}>
         <div className="chat-list">
         {
           this.props.messages.map((message, i) => {
