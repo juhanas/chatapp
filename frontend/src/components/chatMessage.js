@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import '../styles/ChatMessage.scss';
 
 class ChatMessage extends Component{
   

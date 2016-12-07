@@ -148,11 +148,13 @@ class Chat extends Component{
   render() {
     return (
       <div className="chat-container row">
-        <ChatList messages={this.state.messages} cls="col-sm-10"/>
-        <ChatInput user={this.state.username} onMessageSend={this.handleMessageSend} cls="col-sm-10"/>
-        <div className="info-container col-sm-2 navbar-right">
+        <div className="chat-list-container col-sm-10">
+          <ChatList messages={this.state.messages}/>
+          <ChatInput user={this.state.username} onMessageSend={this.handleMessageSend}/>
+        </div>
+        <div className="info-container col-sm-2">
           <UserList users={this.state.users} cls=""/>
-          <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange} cls=""/>
+          <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange}/>
         </div>
       </div>
     );

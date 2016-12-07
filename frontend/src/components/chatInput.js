@@ -40,9 +40,8 @@ class ChatInput extends Component{
    * Calls this.messageHandler and this.sendMessage with change in input or for submit.
    */
   render() {
-    var clas = "chat-input-container " + this.props.cls;
     return (
-      <div className={clas}>
+      <div className="chat-input-container">
         <form  onSubmit={this.sendMessage}>
           <div className="input-group">
             <label className="sr-only" htmlFor="msg">Message:</label>

@@ -62,7 +62,7 @@ class ChangeNameModal extends Component {
   render() {
     const starting = this.state.starting;
     return (
-      <div className="change-name-modal-container row">
+      <div className="change-name-modal-container">
         <div className={this.props.cls}>
           <Button onClick={this.openModal}>Change name</Button>
           <Modal

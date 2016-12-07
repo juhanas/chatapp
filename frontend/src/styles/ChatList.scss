@@ -1,17 +1,12 @@
-.chat-list-container {
-  padding-bottom: 5px;
-  padding-left: 0px !important;
-  background-color: black;
-  color: white;
-  position: absolute !important;
-  bottom: 50px;
-  top: 120px;
-}  
 .chat-list {
-  overflow-y: auto;
-  position: absolute !important;
+  position: absolute;
   top: 0px;
   bottom: 10px;
-  padding-left: 15px;
+  padding-left: 10px !important;
+  margin-bottom: 25px;
+  overflow-y: auto;
   width: 100%;
+  overflow-wrap: break-word;
+  background-color: black;
+  color: white;
 }

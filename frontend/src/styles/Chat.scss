@@ -1,8 +1,20 @@
 .chat-container {
   padding-top: 120px;
   z-index: 50;
+  height: 100%;
+}
+
+.chat-list-container {
+  height: 100%;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  background-color: black;
+  color: white;
 }
 
 .info-container {
-
+  height: 100%;
+  float: right;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }

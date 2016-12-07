@@ -19,9 +19,7 @@ class ChatList extends Component{
    * - messages [String]: List of messages in JSON {user: username, message: message}
    */
   render() {
-    var clas = "chat-list-container " + this.props.cls;
     return (
-      <div className={clas}>
         <div className="chat-list" id="chat-list">
         {
           this.props.messages.map((message, i) => {
@@ -33,7 +31,6 @@ class ChatList extends Component{
           })
         }
         </div>
-      </div>
     );
   }
 }
