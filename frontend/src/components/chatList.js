@@ -4,6 +4,15 @@ import '../styles/ChatList.scss';
 
 class ChatList extends Component{
   
+  /**
+   * Scrolls the chat list to the last message when a new message is added
+   */
+  componentDidUpdate() {
+    // get the messagelist container and set the scrollTop to the height of the container
+    const objDiv = document.getElementById('chat-list');
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
+  
   /*
    * Renders the chat log with messages.
    * Props required:
@@ -13,7 +22,7 @@ class ChatList extends Component{
     var clas = "chat-list-container " + this.props.cls;
     return (
       <div className={clas}>
-        <div className="chat-list">
+        <div className="chat-list" id="chat-list">
         {
           this.props.messages.map((message, i) => {
             var username = '';
