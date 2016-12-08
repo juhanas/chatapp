@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import '../styles/UserData.scss';
 
 class UserData extends Component{
   /*
@@ -7,9 +8,14 @@ class UserData extends Component{
    * - name [String]: Name of the user
    */
   render() {
+    var cls = "user-data-name";
+    if( this.props.owner) {
+      cls = "user-data-name user";
+    }
+    
     return (
       <div className="user-data-container" >
-        <span className="user-data-name">{this.props.name}</span>
+        <span className={cls}>{this.props.name}</span>
       </div>
     );
   }

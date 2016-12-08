@@ -20,17 +20,17 @@ class ChatList extends Component{
    */
   render() {
     return (
-        <div className="chat-list" id="chat-list">
-        {
-          this.props.messages.map((message, i) => {
-            var username = '';
-            if (message.hasOwnProperty('user')) username = message.user;
-            return (
-              <ChatMessage key={i.toString()} user={username} message={message.message}/>
-            );
-          })
-        }
-        </div>
+      <div className="chat-list" id="chat-list">
+      {
+        this.props.messages.map((message, i) => {
+          var username = '';
+          if (message.hasOwnProperty('user')) username = message.user;
+          return (
+            <ChatMessage key={i.toString()} user={username} message={message.message}/>
+          );
+        })
+      }
+      </div>
     );
   }
 }

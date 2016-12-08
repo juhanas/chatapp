@@ -49,7 +49,8 @@ class ChangeNameModal extends Component {
     }
     this.setState({text: ''})
     this.setState({error: ''});
-  }
+    this.setState({open: false});
+ }
 
   openModal() { this.setState({open: true}); }
 
@@ -63,23 +64,21 @@ class ChangeNameModal extends Component {
     const starting = this.state.starting;
     return (
       <div className="change-name-modal-container">
-        <div className={this.props.cls}>
-          <Button onClick={this.openModal}>Change name</Button>
-          <Modal
-            className="modal-class"
-            overlayClassName="modal-container"
-            isOpen={this.state.open}
-            onRequestClose={this.closeModal}
-          >
-            <div className="change-name-modal-content">
-              <h2>{starting ? 'Enter' : 'Change'} name</h2>
-              <input type="text" value={this.state.text} placeholder={this.props.username} onChange={this.messageHandler} />
-              <Button onClick={this.save} bsStyle="primary">Save</Button>
-              <Button hidden={this.props.start && 'hidden'} onClick={this.closeModal}>Close</Button>
-              <p className="modal-error-message">{this.state.error}</p>
-            </div>
-          </Modal>
-        </div>
+        <Button onClick={this.openModal}>Change name</Button>
+        <Modal
+          className="modal-class"
+          overlayClassName="modal-container"
+          isOpen={this.state.open}
+          onRequestClose={this.closeModal}
+        >
+          <div className="change-name-modal-content">
+            <h2>{starting ? 'Enter' : 'Change'} name</h2>
+            <input type="text" value={this.state.text} placeholder={this.props.username} onChange={this.messageHandler} />
+            <Button onClick={this.save} bsStyle="primary">Save</Button>
+            <Button hidden={this.props.start && 'hidden'} onClick={this.closeModal}>Close</Button>
+            <p className="modal-error-message">{this.state.error}</p>
+          </div>
+        </Modal>
       </div>
     );
   }

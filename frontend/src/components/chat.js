@@ -4,6 +4,7 @@ import ChatInput from './chatInput';
 import UserList from './userList';
 import ChangeNameModal from './changeNameModal';
 import ioClient from 'socket.io-client';
+import MediaQuery from 'react-responsive';
 import '../styles/Chat.scss';
 
 var socket;
@@ -12,14 +13,14 @@ class Chat extends Component{
   constructor(props) {
     super(props);
     this.state = { messages: [],
-      users: ['a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','b','a','a','a','a','a','a','b','a','a','a','a','a','a','b'],
+      users: [],
       username: '',
       start: true
     };
   }
   
   componentDidMount = () => {
-    socket = ioClient.connect('http://localhost:3000'); // Remove address for production
+    socket = ioClient.connect(); 
     var self = this;
     
     /**
@@ -148,14 +149,22 @@ class Chat extends Component{
   render() {
     return (
       <div className="chat-container row">
-        <div className="chat-list-container col-sm-10">
+        <div className="chat-list-container col-sm-10 col-xs-12">
           <ChatList messages={this.state.messages}/>
           <ChatInput user={this.state.username} onMessageSend={this.handleMessageSend}/>
         </div>
-        <div className="info-container col-sm-2">
-          <UserList users={this.state.users} cls=""/>
-          <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange}/>
-        </div>
+        <MediaQuery minDeviceWidth={768}>
+          <div className="info-container col-sm-2">
+            <UserList users={this.state.users} username={this.state.username}/>
+            <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange}/>
+          </div>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={767}>
+          <div className="info-container-small">
+            <UserList users={this.state.users}/>
+            <ChangeNameModal start={this.state.start} username={this.state.username} onSave={this.handleNameChange}/>
+          </div>
+        </MediaQuery>
       </div>
     );
   }

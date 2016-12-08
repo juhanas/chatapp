@@ -1,7 +1,9 @@
-.change-name-modal-container {
-  position: fixed;
-  bottom: 0px;
-  margin-left: 15px;
+.info-container {
+  .change-name-modal-container {
+    position: fixed;
+    bottom: 0px;
+    margin-left: 15px;
+  }
 }
 
 .modal-container {
@@ -31,4 +33,14 @@
 
 .modal-error-message {
   color: purple;
+}
+
+.info-container-small {
+  .change-name-modal-container {
+    position: absolute;
+    right: 0px;
+    float:left;
+    top: 55px;
+    margin-left: 15px;
+  }
 }
